@@ -34,7 +34,7 @@ void logmessage(const char *, ...);
 #define MSG_DEBUG(FLAG, fmt, ...)                                                                         \
             do  {                                                                                         \
                 if (FLAG)                                                                                 \
-                    fprintf(stdout, "%s:%d:%s(): " fmt, __FILE__, __LINE__, __FUNCTION__, ##__VA_ARGS__); \
+                    fprintf(stdout,  fmt, ##__VA_ARGS__); \
             } while (0)
 
 //#define LOGGER(args...) do { if (logger_enabled == true) printf(args); } while (0)
