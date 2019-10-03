@@ -1557,7 +1557,30 @@ void thread_up(void) {
             MSG("ERROR: [up] failed packet fetch, exiting\n");
             exit(EXIT_FAILURE);
         }
-
+        for(int index = 0; index < nb_pkt; index++)
+        {
+          MSG_DEBUG(DEBUG_PKT_FWD, "freq_hz: %d\n", rxpkt[index].freq_hz);
+          MSG_DEBUG(DEBUG_PKT_FWD, "if_chain: %d\n", rxpkt[index].if_chain);
+          MSG_DEBUG(DEBUG_PKT_FWD, "status: %d\n", rxpkt[index].status);
+          MSG_DEBUG(DEBUG_PKT_FWD, "count_us: %d\n", rxpkt[index].count_us);
+          MSG_DEBUG(DEBUG_PKT_FWD, "rf_chain: %d\n", rxpkt[index].rf_chain);
+          MSG_DEBUG(DEBUG_PKT_FWD, "modulation: %d\n", rxpkt[index].modulation);
+          MSG_DEBUG(DEBUG_PKT_FWD, "bandwidth: %d\n", rxpkt[index].bandwidth);
+          MSG_DEBUG(DEBUG_PKT_FWD, "datarate: %d\n", rxpkt[index].datarate);
+          MSG_DEBUG(DEBUG_PKT_FWD, "coderate: %d\n", rxpkt[index].coderate);
+          MSG_DEBUG(DEBUG_PKT_FWD, "rssi: %d\n", rxpkt[index].rssi);
+          MSG_DEBUG(DEBUG_PKT_FWD, "snr: %d\n", rxpkt[index].snr);
+          MSG_DEBUG(DEBUG_PKT_FWD, "snr_min: %d\n", rxpkt[index].snr_min);
+          MSG_DEBUG(DEBUG_PKT_FWD, "snr_max: %d\n", rxpkt[index].snr_max);
+          MSG_DEBUG(DEBUG_PKT_FWD, "crc: %d\n", rxpkt[index].crc);
+          MSG_DEBUG(DEBUG_PKT_FWD, "size: %d\n", rxpkt[index].size);
+          MSG_DEBUG(DEBUG_PKT_FWD, "Payload: ");
+          for(int index2 = 0; index2 < rxpkt[index].size; index2++)
+          {
+            MSG_DEBUG(DEBUG_PKT_FWD, "%X ", rxpkt[index].payload[index2]);
+          }
+          MSG_DEBUG(DEBUG_PKT_FWD, "\n");
+        }
         /* check if there are status report to send */
         send_report = report_ready; /* copy the variable so it doesn't change mid-function */
         /* no mutex, we're only reading */
